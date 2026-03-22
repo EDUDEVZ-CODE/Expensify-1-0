@@ -19,7 +19,7 @@
             line-height: 1.5;
         }
 
-        /* Header avec gradient moderne */
+        /* Header */
         header {
             background: linear-gradient(135deg, #6A0DAD, #2C003E);
             padding: 1rem 5%;
@@ -33,12 +33,21 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             font-size: 1.5rem;
             font-weight: bold;
             color: white;
         }
 
-        /* Navigation principale */
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
         nav a {
             color: #E0E0E0;
             margin: 0 1rem;
@@ -57,7 +66,7 @@
             border-bottom: 2px solid #85C1E9;
         }
 
-        /* Navigation secondaire (critère important) */
+        /* Navigation secondaire */
         .sub-nav {
             background: #F4F4F4;
             padding: 0.8rem;
@@ -81,7 +90,7 @@
             transform: translateY(-2px);
         }
 
-        /* Hero section */
+        /* Hero Section */
         .hero {
             padding: 5rem 5%;
             text-align: center;
@@ -103,7 +112,18 @@
             margin-bottom: 2rem;
         }
 
-        /* Boutons avec effets hover améliorés */
+        .hero-image {
+            margin-top: 2rem;
+        }
+
+        .hero-image img {
+            max-width: 80%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Boutons avec effets hover */
         .btn-primary {
             padding: 1rem 2rem;
             background: linear-gradient(135deg, #3498DB, #2980B9);
@@ -122,8 +142,8 @@
             box-shadow: 0 8px 25px rgba(52,152,219,0.4);
         }
 
-        .btn-primary:active {
-            transform: translateY(0);
+        .btn-primary:hover::after {
+            content: " 🚀";
         }
 
         .btn-secondary {
@@ -136,12 +156,17 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            margin-left: 1rem;
         }
 
         .btn-secondary:hover {
             background: #6A0DAD;
             color: white;
             transform: scale(1.05);
+        }
+
+        .btn-secondary:hover::after {
+            content: " 🎬";
         }
 
         /* Sections */
@@ -156,7 +181,7 @@
             color: #1A1A2E;
         }
 
-        /* Cartes de fonctionnalités */
+        /* Cartes fonctionnalités */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -180,9 +205,11 @@
             border-color: #6A0DAD;
         }
 
-        .feature-icon {
-            font-size: 3rem;
+        .feature-card img {
+            width: 80px;
+            height: 80px;
             margin-bottom: 1rem;
+            object-fit: contain;
         }
 
         .feature-card h3 {
@@ -196,6 +223,16 @@
             border-radius: 30px;
             padding: 3rem;
             text-align: center;
+        }
+
+        .demo-image {
+            margin-bottom: 2rem;
+        }
+
+        .demo-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .demo-input {
@@ -263,6 +300,20 @@
             color: #6A0DAD;
         }
 
+        /* Section graphique */
+        .graphique-section {
+            text-align: center;
+            background: #f8f9fa;
+            border-radius: 30px;
+            padding: 2rem;
+        }
+
+        .graphique-section img {
+            max-width: 100%;
+            border-radius: 15px;
+            margin-top: 1rem;
+        }
+
         /* Footer */
         footer {
             background: #000;
@@ -298,11 +349,6 @@
                 gap: 1rem;
             }
 
-            nav a {
-                margin: 0 0.5rem;
-                font-size: 0.9rem;
-            }
-
             .sub-nav {
                 top: 110px;
             }
@@ -315,12 +361,12 @@
                 font-size: 1.8rem;
             }
 
-            .demo-input input {
-                width: 100%;
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 1rem;
             }
         }
 
-        /* Animation smooth scroll */
         html {
             scroll-behavior: smooth;
         }
@@ -329,7 +375,10 @@
 <body>
 
     <header>
-        <div class="logo">💰 Expensify</div>
+        <div class="logo">
+            <img src="logo.png" alt="Expensify Logo">
+            <span>💰 Expensify</span>
+        </div>
         <nav>
             <a href="#hero" class="active">Accueil</a>
             <a href="#features">Fonctionnalités</a>
@@ -338,14 +387,15 @@
         </nav>
     </header>
 
-    <!-- Navigation secondaire (critère validé ✅) -->
+    <!-- Navigation secondaire -->
     <div class="sub-nav">
         <a href="#features">✨ Fonctionnalités</a>
         <a href="#demo">🎬 Démo interactive</a>
         <a href="#testimonials">⭐ Avis clients</a>
-        <a href="#faq">❓ FAQ</a>
+        <a href="#graphique">📊 Statistiques</a>
     </div>
 
+    <!-- Hero Section avec image -->
     <section id="hero" class="hero">
         <h1>Gérez vos dépenses comme un pro</h1>
         <p>Expensify vous aide à suivre, analyser et optimiser vos finances en quelques clics</p>
@@ -355,37 +405,40 @@
         <button class="btn-secondary" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">
             🎬 Voir la démo
         </button>
+        <div class="hero-image">
+            <img src="image_app.png" alt="Application Expensify">
+        </div>
     </section>
 
+    <!-- Fonctionnalités -->
     <section id="features" class="section">
         <h2>✨ Fonctionnalités puissantes</h2>
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">📊</div>
+                <img src="logo.png" alt="Suivi des dépenses">
                 <h3>Suivi en temps réel</h3>
                 <p>Visualisez toutes vos dépenses instantanément avec des graphiques clairs et détaillés.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🤖</div>
+                <img src="logo.png" alt="Analyse intelligente">
                 <h3>Analyse intelligente</h3>
                 <p>Notre IA catégorise automatiquement vos dépenses et vous donne des conseils personnalisés.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">📱</div>
+                <img src="image_app.png" alt="Application mobile">
                 <h3>Application mobile</h3>
                 <p>Accédez à vos données partout, même hors ligne, avec notre app synchronisée.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Sécurité maximale</h3>
-                <p>Vos données sont chiffrées et protégées avec les standards bancaires.</p>
             </div>
         </div>
     </section>
 
+    <!-- Section Démo interactive -->
     <section id="demo" class="section">
         <h2>🎬 Testez la démo interactive</h2>
         <div class="demo-section">
+            <div class="demo-image">
+                <img src="image_app.png" alt="Démo Expensify">
+            </div>
             <p style="margin-bottom: 1rem;">Ajoutez une dépense pour voir le suivi en action :</p>
             <div class="demo-input">
                 <input type="text" id="expenseName" placeholder="Nom de la dépense (ex: Café)">
@@ -399,6 +452,16 @@
         </div>
     </section>
 
+    <!-- Section Graphique -->
+    <section id="graphique" class="section">
+        <h2>📊 Visualisez vos dépenses</h2>
+        <div class="graphique-section">
+            <p>Analysez vos finances avec nos graphiques détaillés</p>
+            <img src="image_graphique.png" alt="Graphique des dépenses">
+        </div>
+    </section>
+
+    <!-- Témoignages -->
     <section id="testimonials" class="section">
         <h2>⭐ Ce que nos utilisateurs disent</h2>
         <div class="testimonials-grid">
@@ -417,33 +480,19 @@
         </div>
     </section>
 
-    <section id="faq" class="section">
-        <h2>❓ Questions fréquentes</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <h3>Est-ce vraiment gratuit ?</h3>
-                <p>Oui ! La version de base est totalement gratuite sans limite de temps.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Mes données sont-elles sécurisées ?</h3>
-                <p>Absolument, nous utilisons un chiffrement bancaire AES-256.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Puis-je exporter mes données ?</h3>
-                <p>Bien sûr, export en CSV, PDF ou Excel en un clic.</p>
-            </div>
-        </div>
-    </section>
-
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="logo" style="margin-bottom: 1rem;">💰 Expensify</div>
+            <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+                <img src="logo.png" alt="Expensify Logo">
+                <span>💰 Expensify</span>
+            </div>
             <div class="footer-links">
                 <a href="#hero">Accueil</a>
                 <a href="#features">Fonctionnalités</a>
                 <a href="#demo">Démo</a>
                 <a href="#testimonials">Avis</a>
-                <a href="#faq">FAQ</a>
+                <a href="#graphique">Statistiques</a>
             </div>
             <p>© 2024 Expensify - Projet scolaire sans but commercial. Tous droits réservés.</p>
             <p style="margin-top: 0.5rem; font-size: 0.8rem;">Images et contenus utilisés à des fins éducatives uniquement.</p>
@@ -451,7 +500,7 @@
     </footer>
 
     <script>
-        // Fonction pour mettre à jour l'indicateur de page active
+        // Indicateur de page active au scroll
         function updateActiveNav() {
             const sections = document.querySelectorAll('section[id]');
             const navLinks = document.querySelectorAll('nav a');
@@ -478,7 +527,7 @@
             });
         }
         
-        // Fonction pour ajouter une dépense
+        // Gestion des dépenses
         let total = 0;
         let expenses = [];
         
@@ -501,7 +550,6 @@
             expenses.push({ name, amount });
             total += amount;
             
-            // Mise à jour de l'affichage
             document.getElementById('totalAmount').textContent = total.toFixed(2);
             
             const expenseListDiv = document.getElementById('expenseList');
@@ -512,33 +560,22 @@
                 </div>
             `).join('');
             
-            // Animation de confirmation
             const resultDiv = document.getElementById('expenseResult');
             resultDiv.style.transform = 'scale(1.02)';
             setTimeout(() => {
                 resultDiv.style.transform = 'scale(1)';
             }, 200);
             
-            // Réinitialisation des champs
             nameInput.value = '';
             amountInput.value = '';
             nameInput.focus();
         }
         
-        // Écouteur pour le scroll actif
         window.addEventListener('scroll', updateActiveNav);
         window.addEventListener('load', updateActiveNav);
         
-        // Support Entrée dans les champs
         document.getElementById('expenseAmount').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                addExpense();
-            }
-        });
-        document.getElementById('expenseName').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.getElementById('expenseAmount').focus();
-            }
+            if (e.key === 'Enter') addExpense();
         });
     </script>
 </body>
